@@ -38,5 +38,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EnergySourceHandling\EFuelTypes.cs" />
+    <Compile Include="EnergySourceHandling\IElectric.cs" />
+    <Compile Include="EnergySourceHandling\IEnergySource.cs" />
+    <Compile Include="EnergySourceHandling\IFueled.cs" />
+    <Compile Include="ExceptionHandling\ValueOutOfRangeException.cs" />
+    <Compile Include="VehicleRelated\Car.cs" />
+    <Compile Include="EnergySourceHandling\Electric.cs" />
+    <Compile Include="EnergySourceHandling\Fuel.cs" />
+    <Compile Include="GarageRelated\GarageEntry.cs" />
+    <Compile Include="VehicleRelated\Motorcycle.cs" />
+    <Compile Include="GarageRelated\Owner.cs" />
+    <Compile Include="VehicleRelated\Truck.cs" />
+    <Compile Include="VehicleRelated\Vehicle.cs" />
+    <Compile Include="VehicleRelated\Wheel.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

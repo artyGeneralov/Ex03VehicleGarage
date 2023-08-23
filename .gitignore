@@ -398,5 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 
-# Igonre sln for privacy purposes
+# Igonre sln and .vs for privacy purposes
 *.sln
+.vs/
