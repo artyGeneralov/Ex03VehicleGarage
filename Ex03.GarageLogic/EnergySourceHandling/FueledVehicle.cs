@@ -2,7 +2,9 @@
 
 namespace Ex03.GarageLogic
 {
-    class FueledVehicle
+    class FueledVehicle : Vehicle, IFueled
     {
+
+
     }
 }

@@ -14,12 +14,19 @@ namespace Ex03.GarageLogic
         {
 
             Vehicle vehicle;
+
+
             // create the wheel
+
             Wheel wheel = new Wheel(
                 manufacturer: args["manufacturer"],
                 currentAirPressure: float.Parse(args["currentAirPressure"]),
                 maxAirPressure: float.Parse(args["maxAirPressure"])
-                ) ;
+                );
+
+
+
+
             switch (vehicleType)
             {
                /* public Car(string modelName, string licensePlateNumber, EnergySource energySource, Colors color, int numberOfDoors, Wheel wheelType)
@@ -39,7 +46,6 @@ namespace Ex03.GarageLogic
                         color:(EColors) Enum.Parse(typeof(EColors),args["color"]),
                         numberOfDoors: int.Parse(args["numberOfDoors"]),
                         wheelType: wheel
-                    
                      );
                     break;
 

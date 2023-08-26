@@ -56,7 +56,6 @@ namespace Ex03.GarageLogic
             {
                 currentEnergy += fuelAmount;
             }
-
         }
     }
 }
