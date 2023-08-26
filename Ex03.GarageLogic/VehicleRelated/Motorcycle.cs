@@ -26,5 +26,10 @@ namespace Ex03.GarageLogic
             this.licenseType = licenseType;
             this.motorVolume = motorVolume;
         }
+
+        public override List<string> GetArgumentsList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

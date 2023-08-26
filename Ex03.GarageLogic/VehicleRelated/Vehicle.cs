@@ -5,13 +5,19 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        private string modelName {get; set;}
-        private string licensePlateNumber {get; set;}
-        private IEnergySource energySource {get; set;}
-        private List<Wheel> wheels {get; set;}
         protected abstract int numberOfWheels { get; }
+        private string modelName;
+        private string licensePlateNumber;
+        private EnergySource energySource; // not this
+        protected float maxEnergy, currentEnergy;
 
-        protected Vehicle(string modelName, string licensePlateNumber, IEnergySource energySource, Wheel wheelType)
+        private List<Wheel> wheels;
+
+        protected Vehicle()
+        {
+            
+        }
+        protected Vehicle(string modelName, string licensePlateNumber, float maxEnergy, float currentEnergy, Wheel wheelType)
         {
             wheels = new List<Wheel>();
             for(int i = 0; i < numberOfWheels; i++)
@@ -21,28 +27,44 @@ namespace Ex03.GarageLogic
 
             this.modelName = modelName;
             this.licensePlateNumber = licensePlateNumber;
-            this.energySource = energySource;
+            this.maxEnergy = maxEnergy;
+            this.currentEnergy = currentEnergy;
         }
 
-        public void RefuelOrRecharge(float amount, EFuelTypes? type = null)
+        public void inflateAllWheels(float amount)
         {
-            if(energySource is IFueled fueledSource && type.HasValue)
+            foreach (Wheel wheel in wheels)
             {
-                fueledSource.Refuel(amount, type.Value);
-            }
-            else if(energySource is IElectric electricSource)
-            {
-                electricSource.Recharge(amount);
+                wheel.inflate(amount);
             }
         }
+
 
         public Vehicle DeepCopy()
         {
             Vehicle copiedVehicle = (Vehicle)this.MemberwiseClone();
-            copiedVehicle.energySource = (IEnergySource)this.energySource.Clone();
+            copiedVehicle.energySource = this.energySource.ShallowCopy();
             copiedVehicle.wheels = this.wheels.Select(w => w.ShallowCopy()).ToList();
             return copiedVehicle;
         }
+
+        public string GetLicenseplateNumber()
+        {
+            return licensePlateNumber;
+        }
+
+        public EnergySource GetEnergySource()
+        {
+            return energySource;
+        }
+        public override string ToString()
+        {
+            return $"Model name: {modelName}\nLicense plate number: {licensePlateNumber}";
+        }
+
+
+        public abstract List<string> GetArgumentsList();
+
 
 
     }

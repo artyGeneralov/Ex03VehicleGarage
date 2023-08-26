@@ -397,7 +397,3 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-
-# Igonre sln and .vs for privacy purposes
-*.sln
-.vs/

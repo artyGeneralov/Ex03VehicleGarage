@@ -39,15 +39,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnergySourceHandling\EEnergySources.cs" />
     <Compile Include="EnergySourceHandling\EFuelTypes.cs" />
-    <Compile Include="EnergySourceHandling\IElectric.cs" />
-    <Compile Include="EnergySourceHandling\IEnergySource.cs" />
-    <Compile Include="EnergySourceHandling\IFueled.cs" />
+    <Compile Include="EnergySourceHandling\Electrical.cs" />
+    <Compile Include="EnergySourceHandling\EnergySource.cs" />
+    <Compile Include="EnergySourceHandling\Fueled.cs" />
     <Compile Include="ExceptionHandling\ValueOutOfRangeException.cs" />
+    <Compile Include="GarageRelated\EVehicleStatus.cs" />
+    <Compile Include="GarageRelated\Garage.cs" />
+    <Compile Include="VehicleFactory.cs" />
     <Compile Include="VehicleRelated\Car.cs" />
-    <Compile Include="EnergySourceHandling\Electric.cs" />
-    <Compile Include="EnergySourceHandling\Fuel.cs" />
     <Compile Include="GarageRelated\GarageEntry.cs" />
+    <Compile Include="VehicleRelated\EVehicleTypes.cs" />
     <Compile Include="VehicleRelated\Motorcycle.cs" />
     <Compile Include="GarageRelated\Owner.cs" />
     <Compile Include="VehicleRelated\Truck.cs" />

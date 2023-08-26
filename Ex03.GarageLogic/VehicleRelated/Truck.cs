@@ -18,5 +18,10 @@ namespace Ex03.GarageLogic
             this.isCooled = isCooled;
             this.cargoVolume = cargoVolume;
         }
+
+        public override List<string> GetArgumentsList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

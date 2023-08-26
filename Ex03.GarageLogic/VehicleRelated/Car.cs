@@ -7,22 +7,46 @@ using System.Threading.Tasks;
 namespace Ex03.GarageLogic
 {
 
+
+
+/*    interface IElectric
+    {
+        public void Charge(float hours);
+    }
+
+    interface IFueled
+    {
+        public void Fuel(float fuel);
+    }
+
+
+    class FueledCar : IFueled
+    { 
+        
+        
+    }
+
+    class ElectricCar : IElectric
+    {
+
+    }*/
     class Car : Vehicle
     {
-        protected override int numberOfWheels => 4;
+        private const int _numberOfWheels = 5;
+        
+        
+        protected override int numberOfWheels => _numberOfWheels;
 
-        public enum Colors
-        {
-            Black,
-            White,
-            Red,
-            Blue
-        }
 
-        private Colors color;
+
+        private EColors color;
         private int numberOfDoors;
 
-        public Car(string modelName, string licensePlateNumber, IEnergySource energySource, Colors color, int numberOfDoors, Wheel wheelType)
+        public Car(EnergySource energySource) : base (energySource)
+        {
+
+        }
+        public Car(string modelName, string licensePlateNumber, EnergySource energySource, EColors color, int numberOfDoors, Wheel wheelType)
                 : base(modelName, licensePlateNumber, energySource, wheelType)
         {
             if (numberOfDoors < 2 || numberOfDoors > 5) 
@@ -31,6 +55,13 @@ namespace Ex03.GarageLogic
             }
             this.color = color;
             this.numberOfDoors = numberOfDoors;
+        }
+
+        public override List<string> GetArgumentsList()
+        {
+            List<string> args = new List<string>() { "modelName", "licensePlateNumber", "energySource", "color", "numberOfDoors" };
+            args.Concat(Wheel.GetArgumentList());
+            return args;
         }
 
     }

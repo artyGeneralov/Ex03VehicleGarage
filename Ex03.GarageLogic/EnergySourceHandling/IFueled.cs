@@ -1,7 +1,7 @@
 ﻿namespace Ex03.GarageLogic
 {
-    public interface IFueled : IEnergySource
+    interface IFueled
     {
-        void Refuel(float amount, EFuelTypes fuleType);
+        void Refuel(float fuelAmount, EFuelTypes fuelType);
     }
 }

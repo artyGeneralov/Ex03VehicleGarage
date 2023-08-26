@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -16,6 +17,12 @@ namespace Ex03.GarageLogic
             this.maxAirPressure = maxAirPressure;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="amount"> amount to inflate </param>
+        /// <exception cref="ValueOutOfRangeException"/>
         public void inflate(float amount)
         {
             if(currentAirPressure + amount > maxAirPressure)
@@ -38,6 +45,11 @@ namespace Ex03.GarageLogic
             StringBuilder sb = new StringBuilder();
             sb.Append($"manufacturer = {manufacturer}, current air pressure = {currentAirPressure}, max air pressure = {maxAirPressure}");
             return sb.ToString();
+        }
+
+        public static List<string> GetArgumentList() {
+
+            return new List<string>() { "manufacturer", "currentAirPressure", "maxAirPressure" };
         }
     }
 }
