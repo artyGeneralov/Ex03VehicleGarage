@@ -47,7 +47,6 @@
     <Compile Include="GarageRelated\EVehicleStatus.cs" />
     <Compile Include="GarageRelated\Garage.cs" />
     <Compile Include="VehicleFactory.cs" />
-    <Compile Include="VehicleRelated\Car.cs" />
     <Compile Include="GarageRelated\GarageEntry.cs" />
     <Compile Include="VehicleRelated\EColors.cs" />
     <Compile Include="VehicleRelated\ElectricCar.cs" />
@@ -56,7 +55,6 @@
     <Compile Include="VehicleRelated\EVehicleTypes.cs" />
     <Compile Include="VehicleRelated\FueledCar.cs" />
     <Compile Include="VehicleRelated\FueledMotorcycle.cs" />
-    <Compile Include="VehicleRelated\Motorcycle.cs" />
     <Compile Include="GarageRelated\Owner.cs" />
     <Compile Include="VehicleRelated\Truck.cs" />
     <Compile Include="VehicleRelated\Vehicle.cs" />

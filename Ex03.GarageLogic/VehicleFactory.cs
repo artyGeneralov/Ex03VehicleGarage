@@ -16,7 +16,6 @@ namespace Ex03.GarageLogic
             Vehicle vehicle;
 
 
-            // create the wheel
 
             Wheel wheel = new Wheel(
                 manufacturer: args["manufacturer"],
@@ -57,8 +56,6 @@ namespace Ex03.GarageLogic
                      );
                     break;
 
-                    /*string modelName, string licensePlateNumber, float maxFuel, float currentFuel, 
-                        EFuelTypes fuelType, ELicenseTypes licenseType, int engineVolume, Wheel wheelType*/
                 case EVehicleTypes.FueledMotorcycle:
                     vehicle = new FueledMotorcycle
                     (
@@ -99,7 +96,6 @@ namespace Ex03.GarageLogic
                         wheelType: wheel
                      );
                     break;
-
 
                 default:
                     throw new ArgumentException("Unknown vehicle type");
