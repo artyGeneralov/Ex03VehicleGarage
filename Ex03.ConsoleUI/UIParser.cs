@@ -13,15 +13,15 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Insert: ");
             Dictionary<string, string> result = new Dictionary<string, string>();
 
-            Dictionary<string, Type> argumentsForCar = vehicle.GetArgumentsDictionary();
-            foreach (KeyValuePair<string, Type> arg in argumentsForCar)
+            Dictionary<string, Type> argumentsForVehicle = vehicle.GetArgumentsDictionary();
+            foreach (KeyValuePair<string, Type> arg in argumentsForVehicle)
             {
                 if (arg.Value.IsEnum)
                 {
                     MethodInfo method = typeof(UIParser).GetMethod("UserSelectEnumValueFromList").MakeGenericMethod(new Type[] { arg.Value });
                     object selectedEnumValue = method.Invoke(null, null);
                     result.Add(arg.Key, selectedEnumValue.ToString());
-
+                    
                 }
                 else
                 {
@@ -33,7 +33,6 @@ namespace Ex03.ConsoleUI
                     } while (!CheckInputValidity(input, arg.Value));
                     result.Add(arg.Key, input);
                 }
-
             }
 
             return result;

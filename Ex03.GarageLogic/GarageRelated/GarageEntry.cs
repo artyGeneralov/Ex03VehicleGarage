@@ -33,5 +33,20 @@
         {
             this.vehicleStatus = status;
         }
+
+        public EVehicleStatus GetStatus()
+        {
+            return this.vehicleStatus;
+        }
+
+        public string GetLicensePlateNumber()
+        {
+            return vehicle.GetLicensePlateNumber();
+        }
+
+        public override string ToString()
+        {
+            return $"License: {GetLicensePlateNumber()} Status: {GetStatus().ToString()}";
+        }
     }
 }

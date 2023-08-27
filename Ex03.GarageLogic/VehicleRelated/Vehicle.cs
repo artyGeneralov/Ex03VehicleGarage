@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             return copiedVehicle;
         }
 
-        public string GetLicenseplateNumber()
+        public string GetLicensePlateNumber()
         {
             return licensePlateNumber;
         }

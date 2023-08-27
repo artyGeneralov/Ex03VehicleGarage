@@ -48,6 +48,7 @@
     <Compile Include="GarageRelated\Garage.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="GarageRelated\GarageEntry.cs" />
+    <Compile Include="VehicleRelated\Airplane.cs" />
     <Compile Include="VehicleRelated\EColors.cs" />
     <Compile Include="VehicleRelated\ElectricCar.cs" />
     <Compile Include="VehicleRelated\ElectricMotorcycle.cs" />

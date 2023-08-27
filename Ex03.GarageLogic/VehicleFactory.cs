@@ -18,9 +18,9 @@ namespace Ex03.GarageLogic
 
 
             Wheel wheel = new Wheel(
-                manufacturer: args["manufacturer"],
-                currentAirPressure: float.Parse(args["currentAirPressure"]),
-                maxAirPressure: float.Parse(args["maxAirPressure"])
+                wheelManufacturer: args["wheelManufacturer"],
+                currentWheelAirPressure: float.Parse(args["currentWheelAirPressure"]),
+                maxWheelAirPressure: float.Parse(args["maxWheelAirPressure"])
                 );
 
 
@@ -96,6 +96,18 @@ namespace Ex03.GarageLogic
                         wheelType: wheel
                      );
                     break;
+                case EVehicleTypes.Airplane:
+                    vehicle = new Airplane
+                    (
+                        modelName: args["modelName"],
+                        licensePlateNumber: args["licensePlateNumber"],
+                        maxFuel: float.Parse(args["maxFuel"]),
+                        currentFuel: float.Parse(args["currentFuel"]),
+                        fuelType: (EFuelTypes)Enum.Parse(typeof(EFuelTypes), args["fuelType"]),
+                        color: (EColors)Enum.Parse(typeof(EColors), args["color"]),
+                        wheelType: wheel
+                     );
+                    break;
 
                 default:
                     throw new ArgumentException("Unknown vehicle type");
@@ -121,6 +133,8 @@ namespace Ex03.GarageLogic
                     return new ElectricMotorcycle();
                 case EVehicleTypes.Truck:
                     return new Truck();
+                case EVehicleTypes.Airplane:
+                    return new Airplane();
 
                 default:
                     throw new ArgumentException();

@@ -36,6 +36,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EMainMenuItems.cs" />
+    <Compile Include="ESubMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UIParser.cs" />
   </ItemGroup>

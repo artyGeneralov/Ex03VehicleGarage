@@ -6,16 +6,15 @@ namespace Ex03.GarageLogic
 {
     public class Wheel
     {
-        private string manufacturer;
-        private float currentAirPressure;
-        private float maxAirPressure;
+        private string wheelManufacturer;
+        private float currentWheelAirPressure;
+        private float maxWheelAirPressure;
 
-
-        public Wheel(string manufacturer, float currentAirPressure, float maxAirPressure)
+        public Wheel(string wheelManufacturer, float currentWheelAirPressure, float maxWheelAirPressure)
         {
-            this.manufacturer = manufacturer;
-            this.currentAirPressure = currentAirPressure;
-            this.maxAirPressure = maxAirPressure;
+            this.wheelManufacturer = wheelManufacturer;
+            this.currentWheelAirPressure = currentWheelAirPressure;
+            this.maxWheelAirPressure = maxWheelAirPressure;
         }
 
 
@@ -26,13 +25,13 @@ namespace Ex03.GarageLogic
         /// <exception cref="ValueOutOfRangeException"/>
         public void inflate(float amount)
         {
-            if(currentAirPressure + amount > maxAirPressure)
+            if(currentWheelAirPressure + amount > maxWheelAirPressure)
             {
                 throw new ValueOutOfRangeException();
             }
             else
             {
-                currentAirPressure += amount;
+                currentWheelAirPressure += amount;
             }
         }
 
@@ -44,17 +43,17 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"Manufacturer: {manufacturer}\nCurrent air pressure: {currentAirPressure}\nMax air pressure: {maxAirPressure}");
+            sb.Append($"wheelManufacturer: {wheelManufacturer}\nCurrent air pressure: {currentWheelAirPressure}\nMax air pressure: {maxWheelAirPressure}");
             return sb.ToString();
         }
 
         public static Dictionary<string, Type> GetArgumentsDictionary() 
         {
-            //string manufacturer, float currentAirPressure, float maxAirPressure
+            //string wheelManufacturer, float currentWheelAirPressure, float maxWheelAirPressure
             Dictionary<string, Type> args = new Dictionary<string, Type>();
-            args.Add("manufacturer", typeof(string));
-            args.Add("currentAirPressure", typeof(float));
-            args.Add("maxAirPressure", typeof(float));
+            args.Add("wheelManufacturer", typeof(string));
+            args.Add("currentWheelAirPressure", typeof(float));
+            args.Add("maxWheelAirPressure", typeof(float));
             return args;
         }
     }
