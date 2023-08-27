@@ -31,13 +31,6 @@ namespace Ex03.GarageLogic
             {
 
                 case EVehicleTypes.FueledCar:
-                    // create energy source
-/*                    public FueledCar(string modelName, string licensePlateNumber, float maxFuel, float currentFuel, EFuelTypes fuelType, EColors color, int numberOfDoors, Wheel wheelType)
-                : base(modelName, licensePlateNumber, maxFuel, currentFuel, wheelType)*/
-                    // create color
-
-                    // create wheel type
-
                     vehicle = new FueledCar
                     (
                         modelName: args["modelName"],
@@ -47,6 +40,62 @@ namespace Ex03.GarageLogic
                         fuelType: (EFuelTypes) Enum.Parse(typeof(EFuelTypes), args["fuelType"]),
                         color:(EColors) Enum.Parse(typeof(EColors),args["color"]),
                         numberOfDoors: int.Parse(args["numberOfDoors"]),
+                        wheelType: wheel
+                     );
+                    break;
+
+                case EVehicleTypes.ElectricCar:
+                    vehicle = new ElectricCar
+                    (
+                        modelName: args["modelName"],
+                        licensePlateNumber: args["licensePlateNumber"],
+                        maxCharge: float.Parse(args["maxCharge"]),
+                        currentCharge: float.Parse(args["currentCharge"]),
+                        color: (EColors)Enum.Parse(typeof(EColors), args["color"]),
+                        numberOfDoors: int.Parse(args["numberOfDoors"]),
+                        wheelType: wheel
+                     );
+                    break;
+
+                    /*string modelName, string licensePlateNumber, float maxFuel, float currentFuel, 
+                        EFuelTypes fuelType, ELicenseTypes licenseType, int engineVolume, Wheel wheelType*/
+                case EVehicleTypes.FueledMotorcycle:
+                    vehicle = new FueledMotorcycle
+                    (
+                        modelName: args["modelName"],
+                        licensePlateNumber: args["licensePlateNumber"],
+                        maxFuel: float.Parse(args["maxFuel"]),
+                        currentFuel: float.Parse(args["currentFuel"]),
+                        fuelType: (EFuelTypes)Enum.Parse(typeof(EFuelTypes), args["fuelType"]),
+                        licenseType: (ELicenseTypes)Enum.Parse(typeof(ELicenseTypes), args["licenseType"]),
+                        engineVolume: int.Parse(args["engineVolume"]),
+                        wheelType: wheel
+                     );
+                    break;
+
+                case EVehicleTypes.ElectricMotorcycle:
+                    vehicle = new ElectricMotorcycle
+                    (
+                        modelName: args["modelName"],
+                        licensePlateNumber: args["licensePlateNumber"],
+                        maxCharge: float.Parse(args["maxFuel"]),
+                        currentCharge: float.Parse(args["currentFuel"]),
+                        licenseType: (ELicenseTypes)Enum.Parse(typeof(ELicenseTypes), args["licenseType"]),
+                        engineVolume: int.Parse(args["engineVolume"]),
+                        wheelType: wheel
+                     );
+                    break;
+
+                case EVehicleTypes.Truck:
+                    vehicle = new Truck
+                    (
+                        modelName: args["modelName"],
+                        licensePlateNumber: args["licensePlateNumber"],
+                        maxFuel: float.Parse(args["maxFuel"]),
+                        currentFuel: float.Parse(args["currentFuel"]),
+                        fuelType: (EFuelTypes)Enum.Parse(typeof(EFuelTypes), args["fuelType"]),
+                        isCooled:bool.Parse(args["isCooled"]),
+                        cargoVolume: float.Parse(args["cargoVolume"]),
                         wheelType: wheel
                      );
                     break;
@@ -68,6 +117,14 @@ namespace Ex03.GarageLogic
             {
                 case EVehicleTypes.FueledCar:
                     return new FueledCar();
+                case EVehicleTypes.ElectricCar:
+                    return new ElectricCar();
+                case EVehicleTypes.FueledMotorcycle:
+                    return new FueledMotorcycle();
+                case EVehicleTypes.ElectricMotorcycle:
+                    return new ElectricMotorcycle();
+                case EVehicleTypes.Truck:
+                    return new Truck();
 
                 default:
                     throw new ArgumentException();

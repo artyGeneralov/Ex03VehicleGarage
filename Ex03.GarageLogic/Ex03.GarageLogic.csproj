@@ -41,9 +41,6 @@
   <ItemGroup>
     <Compile Include="EnergySourceHandling\EEnergySources.cs" />
     <Compile Include="EnergySourceHandling\EFuelTypes.cs" />
-    <Compile Include="EnergySourceHandling\Electrical.cs" />
-    <Compile Include="EnergySourceHandling\EnergySource.cs" />
-    <Compile Include="EnergySourceHandling\Fueled.cs" />
     <Compile Include="EnergySourceHandling\IElectrical.cs" />
     <Compile Include="EnergySourceHandling\IFueled.cs" />
     <Compile Include="ExceptionHandling\ValueOutOfRangeException.cs" />
@@ -53,8 +50,12 @@
     <Compile Include="VehicleRelated\Car.cs" />
     <Compile Include="GarageRelated\GarageEntry.cs" />
     <Compile Include="VehicleRelated\EColors.cs" />
+    <Compile Include="VehicleRelated\ElectricCar.cs" />
+    <Compile Include="VehicleRelated\ElectricMotorcycle.cs" />
+    <Compile Include="VehicleRelated\ELicenseTypes.cs" />
     <Compile Include="VehicleRelated\EVehicleTypes.cs" />
     <Compile Include="VehicleRelated\FueledCar.cs" />
+    <Compile Include="VehicleRelated\FueledMotorcycle.cs" />
     <Compile Include="VehicleRelated\Motorcycle.cs" />
     <Compile Include="GarageRelated\Owner.cs" />
     <Compile Include="VehicleRelated\Truck.cs" />

@@ -1,30 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class FueledCar : Vehicle, IFueled
+    class ElectricCar: Vehicle, IElectrical
     {
-
         private const int _maxNumOfWheels = 5;
 
         private EColors color;
         private int numberOfDoors;
-        private EFuelTypes fuelType;
 
         protected override int numberOfWheels => _maxNumOfWheels;
 
-        public FueledCar()
+        public ElectricCar()
         {
 
         }
 
-        public FueledCar(string modelName, string licensePlateNumber, float maxFuel, float currentFuel, EFuelTypes fuelType, EColors color, int numberOfDoors, Wheel wheelType)
-                : base(modelName, licensePlateNumber, maxFuel, currentFuel, wheelType)
+        public ElectricCar(string modelName, string licensePlateNumber, float maxCharge, float currentCharge, EColors color, int numberOfDoors, Wheel wheelType)
+                : base(modelName, licensePlateNumber,maxCharge, currentCharge, wheelType)
         {
-            this.fuelType = fuelType;
             this.color = color;
             this.numberOfDoors = numberOfDoors;
         }
@@ -39,29 +36,23 @@ namespace Ex03.GarageLogic
             Dictionary<string, Type> args = new Dictionary<string, Type>();
             args.Add("modelName", typeof(string));
             args.Add("licensePlateNumber", typeof(string));
-            args.Add("maxFuel", typeof(float));
-            args.Add("currentFuel", typeof(float));
-            args.Add("fuelType", typeof(EFuelTypes));
+            args.Add("maxCharge", typeof(float));
+            args.Add("currentCharge", typeof(float));
             args.Add("color", typeof(EColors));
             args.Add("numberOfDoors", typeof(int));
             Dictionary<string, Type> wheelsDict = Wheel.GetArgumentsDictionary();
-            foreach(KeyValuePair<string, Type> pair in wheelsDict)
+            foreach (KeyValuePair<string, Type> pair in wheelsDict)
             {
                 args.Add(pair.Key, pair.Value);
             }
             return args;
         }
 
-        public void Refuel(float fuelAmount, EFuelTypes fuelType)
+        public void Recharge(float fuelAmount)
         {
-
-            if (fuelType != this.fuelType)
+            if (currentEnergy + fuelAmount >= maxEnergy)
             {
-                throw new ArgumentException("Attempt to fill incorrect fuel type");
-            }
-            else if (currentEnergy + fuelAmount >= maxEnergy)
-            {
-                throw new ArgumentException("Attemp to overfuel");
+                throw new ArgumentException("Attemp to overcharge");
             }
             else
             {
@@ -73,8 +64,8 @@ namespace Ex03.GarageLogic
         {
             StringBuilder str = new StringBuilder();
             str.Append(base.ToString());
-            str.Append($"\nMax Fuel: {maxEnergy}\nCurrent Fuel: {currentEnergy}\n" +
-                $"Fuel Type: {fuelType.ToString()}\nColor: {color.ToString()}\n" +
+            str.Append($"\nMax Charge: {maxEnergy}\nCurrent Charge: {currentEnergy}\n" +
+                $"Color: {color.ToString()}\n" +
                 $"Number of doors: {numberOfDoors}\n");
             str.Append("Wheel info:\n");
             str.Append(wheels[0].ToString());

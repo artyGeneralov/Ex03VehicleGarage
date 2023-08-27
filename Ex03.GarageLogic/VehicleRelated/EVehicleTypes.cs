@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
     {
         ElectricCar,
         FueledCar,
-        ElecricMotorcycle,
+        ElectricMotorcycle,
         FueledMotorcycle,
         Truck
     }
