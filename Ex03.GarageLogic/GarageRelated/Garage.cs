@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -18,13 +19,13 @@ namespace Ex03.GarageLogic
             garageEntryList.Add(entry);
         }
 
-        public bool IsVehicleInGarage(string license)
+        public bool IsVehicleInGarage(string licensePlateNum)
         {
             bool isInGarage = false;
-            foreach(GarageEntry entry in garageEntryList)
+            foreach (GarageEntry entry in garageEntryList)
             {
                 Vehicle curVehicle = entry.GetVehicle();
-                if(curVehicle.GetLicensePlateNumber().Equals(license))
+                if (curVehicle.GetLicensePlateNumber().Equals(licensePlateNum))
                 {
                     isInGarage = true;
                 }
@@ -35,10 +36,7 @@ namespace Ex03.GarageLogic
         public EVehicleStatus getVehicleStatus(string licensePlateNum)
         {
             EVehicleStatus status = 0;
-            if(!IsVehicleInGarage(licensePlateNum))
-            {
-                throw new ArgumentException("Vehicle does not exist in garage");
-            }
+
 
             foreach (GarageEntry entry in garageEntryList)
             {
@@ -51,26 +49,100 @@ namespace Ex03.GarageLogic
             return status;
         }
 
-
-        public void ShowAllVehicles()
+        public void SetVehicleStatus(string licensePlateNum, EVehicleStatus status)
         {
-            foreach(GarageEntry entry in garageEntryList)
-            {
-                Console.WriteLine(entry.ToString());
-            }
-        }
 
-        public void ShowAllVehiclesByStatus(EVehicleStatus status)
-        {
+
             foreach (GarageEntry entry in garageEntryList)
             {
-                if (entry.GetStatus() == status)
+                Vehicle curVehicle = entry.GetVehicle();
+                if (curVehicle.GetLicensePlateNumber().Equals(licensePlateNum))
                 {
-                    Console.WriteLine(entry.ToString());
+                    entry.SetStatus(status);
                 }
             }
         }
 
+
+        public string ShowAllVehicles()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (GarageEntry entry in garageEntryList)
+            {
+                sb.Append(entry.ToStringShort() + "\n");
+            }
+            return sb.ToString();
+        }
+
+        public string ShowFullVehicleData(string licensePlateNum)
+        {
+            string str = "";
+            foreach (GarageEntry entry in garageEntryList)
+            {
+                Vehicle curVehicle = entry.GetVehicle();
+                if (curVehicle.GetLicensePlateNumber().Equals(licensePlateNum))
+                {
+                    str = entry.ToStringLong();
+                }
+            }
+
+            return str;
+        }
+
+        public string ShowAllVehiclesByStatus(EVehicleStatus status)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (GarageEntry entry in garageEntryList)
+            {
+                if (entry.GetStatus() == status)
+                {
+                    sb.Append(entry.ToStringShort() + "\n");
+                }
+            }
+            return sb.ToString();
+        }
+
+        public void InflateTires(string licensePlateNum)
+        {
+
+
+            foreach (GarageEntry entry in garageEntryList)
+            {
+                Vehicle curVehicle = entry.GetVehicle();
+                if (curVehicle.GetLicensePlateNumber().Equals(licensePlateNum))
+                {
+                    curVehicle.inflateAllWheels();
+                }
+            }
+        }
+
+
+        public void RefuelOrRecharge(string licensePlateNum, EEnergySources sourceToFill, float energyAmount, EFuelTypes? fuelType = null)
+        {
+            foreach (GarageEntry entry in garageEntryList)
+            {
+                Vehicle curVehicle = entry.GetVehicle();
+                if (curVehicle.GetLicensePlateNumber().Equals(licensePlateNum))
+                {
+                    if (curVehicle is IFueled && sourceToFill == EEnergySources.Fueled)
+                    {
+                        if (fuelType != null)
+                        {
+                            ((IFueled)curVehicle).Refuel(energyAmount, (EFuelTypes)fuelType);
+                        }
+
+                    }
+                    else if (curVehicle is IElectrical && sourceToFill == EEnergySources.Electrical)
+                    {
+                        ((IElectrical)curVehicle).Recharge(energyAmount);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Fuel types not matching!");
+                    }
+                }
+            }
+        }
 
     }
 }

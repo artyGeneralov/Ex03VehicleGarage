@@ -11,6 +11,11 @@ namespace Ex03.ConsoleUI
         //              3. quit
         AddVehicleToGarage,
         ShowVehiclesInGarage,
+        ChangeVehicleState,
+        InflateTiresToMaximum,
+        FuelFueledVehicle,
+        ChargeElectricalVehicle,
+        ShowFullVehicleDataByLicenseNumber,
         Quit
     }
 }

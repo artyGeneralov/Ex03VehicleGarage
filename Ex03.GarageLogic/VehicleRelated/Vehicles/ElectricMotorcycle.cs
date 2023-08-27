@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
 {
     class ElectricMotorcycle : Vehicle, IElectrical
     {
-        private const int _maxNumOfWheels = 5;
+        private const int _maxNumOfWheels = 2;
 
         private ELicenseTypes licenseType;
         private int engineVolume;
@@ -48,16 +48,16 @@ namespace Ex03.GarageLogic
             return args;
         }
 
-        public void Recharge(float fuelAmount)
+        public void Recharge(float energyAmount)
         {
 
-            if (currentEnergy + fuelAmount >= maxEnergy)
+            if (currentEnergy + energyAmount >= maxEnergy)
             {
                 throw new ArgumentException("Attemp to overcharge");
             }
             else
             {
-                currentEnergy += fuelAmount;
+                currentEnergy += energyAmount;
             }
         }
 

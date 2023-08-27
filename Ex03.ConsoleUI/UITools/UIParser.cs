@@ -28,7 +28,7 @@ namespace Ex03.ConsoleUI
                     string input;
                     do
                     {
-                        Console.WriteLine(arg.Key + ": ");
+                        Console.WriteLine(SplitByCapitalLetter(arg.Key) + ": ");
                         input = Console.ReadLine();
                     } while (!CheckInputValidity(input, arg.Value));
                     result.Add(arg.Key, input);
@@ -66,7 +66,7 @@ namespace Ex03.ConsoleUI
             foreach (TEnum type in Enum.GetValues(typeof(TEnum)))
             {
                 listOfItems.Append(count.ToString() + ". ");
-                listOfItems.Append(type.ToString());
+                listOfItems.Append(SplitByCapitalLetter(type.ToString()));
                 listOfItems.Append("\n");
                 count++;
             }
@@ -87,6 +87,29 @@ namespace Ex03.ConsoleUI
             }
 
             return (TEnum)Enum.GetValues(typeof(TEnum)).GetValue(userInAsNum - 1);
+        }
+
+        private static string SplitByCapitalLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return "";
+            }
+            
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(char.ToUpper(input[0]));  // Add the first character as is, assuming it's uppercase
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                char currentChar = input[i];
+                if (char.IsUpper(currentChar))
+                {
+                    stringBuilder.Append(' ');
+                }
+                stringBuilder.Append(currentChar);
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

@@ -7,7 +7,6 @@ namespace Ex03.GarageLogic
         FueledCar,
         ElectricMotorcycle,
         FueledMotorcycle,
-        Truck,
-        Airplane
+        Truck
     }
 }

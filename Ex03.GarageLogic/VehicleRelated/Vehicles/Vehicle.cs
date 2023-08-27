@@ -31,11 +31,11 @@ namespace Ex03.GarageLogic
             this.currentEnergy = currentEnergy;
         }
 
-        public void inflateAllWheels(float amount)
+        public void inflateAllWheels()
         {
             foreach (Wheel wheel in wheels)
             {
-                wheel.inflate(amount);
+                wheel.Inflate();
             }
         }
 
@@ -52,6 +52,10 @@ namespace Ex03.GarageLogic
             return licensePlateNumber;
         }
 
+        public string GetModelName()
+        {
+            return modelName;
+        }
 
         public override string ToString()
         {

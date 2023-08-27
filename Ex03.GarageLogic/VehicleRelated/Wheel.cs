@@ -23,16 +23,9 @@ namespace Ex03.GarageLogic
         /// </summary>
         /// <param name="amount"> amount to inflate </param>
         /// <exception cref="ValueOutOfRangeException"/>
-        public void inflate(float amount)
+        public void Inflate()
         {
-            if(currentWheelAirPressure + amount > maxWheelAirPressure)
-            {
-                throw new ValueOutOfRangeException();
-            }
-            else
-            {
-                currentWheelAirPressure += amount;
-            }
+            currentWheelAirPressure = maxWheelAirPressure;
         }
 
         public Wheel ShallowCopy()
@@ -43,7 +36,7 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"wheelManufacturer: {wheelManufacturer}\nCurrent air pressure: {currentWheelAirPressure}\nMax air pressure: {maxWheelAirPressure}");
+            sb.Append($"Manufacturer: {wheelManufacturer}\nCurrent air pressure: {currentWheelAirPressure}\nMax air pressure: {maxWheelAirPressure}");
             return sb.ToString();
         }
 

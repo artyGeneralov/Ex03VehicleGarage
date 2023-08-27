@@ -36,10 +36,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EMainMenuItems.cs" />
-    <Compile Include="ESubMenu.cs" />
+    <Compile Include="UITools\MainUI.cs" />
+    <Compile Include="Utils\EMainMenuItems.cs" />
+    <Compile Include="Utils\ESubMenu.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="UIParser.cs" />
+    <Compile Include="UITools\UIParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">

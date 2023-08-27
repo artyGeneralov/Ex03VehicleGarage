@@ -48,15 +48,17 @@ namespace Ex03.GarageLogic
             return args;
         }
 
-        public void Recharge(float fuelAmount)
+        public void Recharge(float energyAmount)
         {
-            if (currentEnergy + fuelAmount >= maxEnergy)
+            if (currentEnergy + energyAmount >= maxEnergy)
             {
                 throw new ArgumentException("Attemp to overcharge");
             }
             else
             {
-                currentEnergy += fuelAmount;
+                Console.WriteLine("curEnergy be4 = " + currentEnergy);
+                currentEnergy += energyAmount;
+                Console.WriteLine("curEnergy after= " + currentEnergy);
             }
         }
 

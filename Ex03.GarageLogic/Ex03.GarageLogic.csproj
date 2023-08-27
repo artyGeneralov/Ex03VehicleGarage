@@ -39,26 +39,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnergySourceHandling\EEnergySources.cs" />
-    <Compile Include="EnergySourceHandling\EFuelTypes.cs" />
-    <Compile Include="EnergySourceHandling\IElectrical.cs" />
-    <Compile Include="EnergySourceHandling\IFueled.cs" />
+    <Compile Include="EnergySourceHandling\EnergySourceEnums\EEnergySources.cs" />
+    <Compile Include="EnergySourceHandling\EnergySourceEnums\EFuelTypes.cs" />
+    <Compile Include="EnergySourceHandling\EnergySourceInterfaces\IElectrical.cs" />
+    <Compile Include="EnergySourceHandling\EnergySourceInterfaces\IFueled.cs" />
     <Compile Include="ExceptionHandling\ValueOutOfRangeException.cs" />
     <Compile Include="GarageRelated\EVehicleStatus.cs" />
     <Compile Include="GarageRelated\Garage.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="GarageRelated\GarageEntry.cs" />
-    <Compile Include="VehicleRelated\Airplane.cs" />
-    <Compile Include="VehicleRelated\EColors.cs" />
-    <Compile Include="VehicleRelated\ElectricCar.cs" />
-    <Compile Include="VehicleRelated\ElectricMotorcycle.cs" />
-    <Compile Include="VehicleRelated\ELicenseTypes.cs" />
-    <Compile Include="VehicleRelated\EVehicleTypes.cs" />
-    <Compile Include="VehicleRelated\FueledCar.cs" />
-    <Compile Include="VehicleRelated\FueledMotorcycle.cs" />
+    <Compile Include="VehicleRelated\Vehicles\Airplane.cs" />
+    <Compile Include="VehicleRelated\VehicleEnums\EColors.cs" />
+    <Compile Include="VehicleRelated\Vehicles\ElectricCar.cs" />
+    <Compile Include="VehicleRelated\Vehicles\ElectricMotorcycle.cs" />
+    <Compile Include="VehicleRelated\VehicleEnums\ELicenseTypes.cs" />
+    <Compile Include="VehicleRelated\VehicleEnums\EVehicleTypes.cs" />
+    <Compile Include="VehicleRelated\Vehicles\FueledCar.cs" />
+    <Compile Include="VehicleRelated\Vehicles\FueledMotorcycle.cs" />
     <Compile Include="GarageRelated\Owner.cs" />
-    <Compile Include="VehicleRelated\Truck.cs" />
-    <Compile Include="VehicleRelated\Vehicle.cs" />
+    <Compile Include="VehicleRelated\Vehicles\Truck.cs" />
+    <Compile Include="VehicleRelated\Vehicles\Vehicle.cs" />
     <Compile Include="VehicleRelated\Wheel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
