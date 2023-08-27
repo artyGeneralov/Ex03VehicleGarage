@@ -29,20 +29,22 @@ namespace Ex03.GarageLogic
 
             switch (vehicleType)
             {
-               /* public Car(string modelName, string licensePlateNumber, EnergySource energySource, Colors color, int numberOfDoors, Wheel wheelType)
-                : base(modelName, licensePlateNumber, energySource, wheelType)*/
+
                 case EVehicleTypes.FueledCar:
                     // create energy source
-                    
+/*                    public FueledCar(string modelName, string licensePlateNumber, float maxFuel, float currentFuel, EFuelTypes fuelType, EColors color, int numberOfDoors, Wheel wheelType)
+                : base(modelName, licensePlateNumber, maxFuel, currentFuel, wheelType)*/
                     // create color
 
                     // create wheel type
 
-                    vehicle = new Car
+                    vehicle = new FueledCar
                     (
                         modelName: args["modelName"],
                         licensePlateNumber: args["licensePlateNumber"],
-                        energySource: new Fueled(), //?? -> float value
+                        maxFuel: float.Parse(args["maxFuel"]),
+                        currentFuel: float.Parse(args["currentFuel"]),
+                        fuelType: (EFuelTypes) Enum.Parse(typeof(EFuelTypes), args["fuelType"]),
                         color:(EColors) Enum.Parse(typeof(EColors),args["color"]),
                         numberOfDoors: int.Parse(args["numberOfDoors"]),
                         wheelType: wheel
@@ -66,8 +68,7 @@ namespace Ex03.GarageLogic
             {
                 case EVehicleTypes.FueledCar:
                     return new FueledCar();
-                case EVehicleTypes.ElectricCar:
-                    return new Car(new Electrical());
+
                 default:
                     throw new ArgumentException();
                 

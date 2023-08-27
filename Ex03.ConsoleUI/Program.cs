@@ -1,7 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Text;
 using System.Collections.Generic;
 using Ex03.GarageLogic;
+using System.Reflection;
 
 namespace Ex03.ConsoleUI
 {
@@ -32,7 +34,7 @@ namespace Ex03.ConsoleUI
             
 
             Garage garage = new Garage();
-            EVehicleTypes chosenType = UserSelectVehicleTypeFromList();
+            EVehicleTypes chosenType = UserSelectEnumValueFromList<EVehicleTypes>();
             Console.WriteLine("chosen type = " + chosenType.ToString());
             Vehicle vehicle = VehicleFactory.CreateEmptyVehicle(chosenType);
             // empty car
@@ -40,56 +42,89 @@ namespace Ex03.ConsoleUI
             // get wheel - > wheel has to be created before vehicle
             Wheel w = new Wheel("abc",0f,0f);
             // get argument list from car
-
+            Dictionary<string, string> userArgsForVehicle = UserInputForVehicle(vehicle);
             // parse user for those arguments and create a list.
 
             // parse user for info on vehicle:
-            // 1. energy source:
-            //EnergySource source = UserInputForEnergySource(vehicle.GetEnergySource());
+            vehicle = VehicleFactory.CreateVehicle(chosenType, userArgsForVehicle);
 
 
             GarageEntry entry = new GarageEntry(vehicle, "avi", "012");
-            
+            Console.WriteLine(entry.GetVehicle().ToString());
             Console.ReadLine();
         }
 
-        public static EnergySource UserInputForEnergySource(EnergySource energySource)
+        public static Dictionary<string, string> UserInputForVehicle(Vehicle vehicle)
         {
-            List<string> args = energySource.GetArgumentList();
-            List<string> userInputs = new List<string>();
-            Console.WriteLine("Please insert the following data for your fuel source: ");
-            foreach(string arg in args)
+            Console.WriteLine("Insert: ");
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            Dictionary<string, Type> argumentsForCar = vehicle.GetArgumentsDictionary();
+            foreach(KeyValuePair<string, Type> arg in argumentsForCar)
             {
-                Console.Write(arg + ": ");
-                userInputs.Add(Console.ReadLine());
+                if (arg.Value.IsEnum)
+                {
+                    MethodInfo method = typeof(Program).GetMethod("UserSelectEnumValueFromList").MakeGenericMethod(new Type[] { arg.Value });
+                    object selectedEnumValue = method.Invoke(null, null);
+                    result.Add(arg.Key, selectedEnumValue.ToString());
+
+                }
+                else
+                {
+                    string input;
+                    do {
+                        Console.WriteLine(arg.Key + ": ");
+                        input = Console.ReadLine();
+                    } while (!CheckInputValidity(input, arg.Value));
+                    result.Add(arg.Key, input);
+                }
                 
             }
-            
-            
-            //return source;
-            
+
+            return result;
         }
 
-        public static EVehicleTypes UserSelectVehicleTypeFromList()
+
+        private static bool CheckInputValidity(string input, Type type)
         {
-            StringBuilder listOfVehicles = new StringBuilder();
-            listOfVehicles.Append("Please choose one vehicle from the following list by number: \n");
-            int count = 1;
-            foreach(EVehicleTypes type in Enum.GetValues(typeof(EVehicleTypes)))
+            bool isValid = false;
+            if (type == typeof(string))
             {
-                listOfVehicles.Append(count.ToString() + ". ");
-                listOfVehicles.Append(type.ToString());
-                listOfVehicles.Append("\n");
+                isValid = true;
+            }
+            else
+            {
+                MethodInfo tryParseMethod = type.GetMethod("TryParse", new[] { typeof(string), type.MakeByRefType() });
+                if (tryParseMethod != null)
+                {
+                    object[] parameters = { input, null };
+                    isValid = (bool)tryParseMethod.Invoke(null, parameters);
+                }
+            }
+            return isValid;
+        }
+
+        public static TEnum UserSelectEnumValueFromList<TEnum>() where TEnum : Enum
+        {
+            StringBuilder listOfItems = new StringBuilder();
+            listOfItems.Append("Please choose one item from the following list by number: \n");
+            int count = 1;
+            foreach (TEnum type in Enum.GetValues(typeof(TEnum)))
+            {
+                listOfItems.Append(count.ToString() + ". ");
+                listOfItems.Append(type.ToString());
+                listOfItems.Append("\n");
                 count++;
             }
-            Console.WriteLine(listOfVehicles);
+            Console.WriteLine(listOfItems);
+
             string userIn;
             int userInAsNum;
             while (true)
             {
                 userIn = Console.ReadLine();
                 bool isNumber = int.TryParse(userIn, out userInAsNum);
-                if (isNumber == false || userInAsNum <= 0 || userInAsNum > Enum.GetValues(typeof(EVehicleTypes)).Length)
+                if (isNumber == false || userInAsNum <= 0 || userInAsNum > Enum.GetValues(typeof(TEnum)).Length)
                 {
                     Console.WriteLine("Wrong input, please retry!");
                     continue;
@@ -97,8 +132,10 @@ namespace Ex03.ConsoleUI
                 break;
             }
 
-            return (EVehicleTypes)Enum.GetValues(typeof(EVehicleTypes)).GetValue(userInAsNum-1);
-        }
+            return (TEnum)Enum.GetValues(typeof(TEnum)).GetValue(userInAsNum - 1);
+        }    
+
+        
     }
 
 

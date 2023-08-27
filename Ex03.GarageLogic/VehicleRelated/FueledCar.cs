@@ -1,8 +1,7 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -34,10 +33,23 @@ namespace Ex03.GarageLogic
 
 
 
-        public override List<string> GetArgumentsList()
+        public override Dictionary<string, Type> GetArgumentsDictionary()
         {
-            List<string> args = new List<string>() { "modelName", "licensePlateNumber", "maxFuel", "currentFuel", "fuelType", "energySource", "color", "numberOfDoors" };
-            args.Concat(Wheel.GetArgumentList());
+            //List<string> argsList = new List<string>() { "modelName", "licensePlateNumber", "maxFuel", "currentFuel", "fuelType", "energySource", "color", "numberOfDoors" };
+
+            Dictionary<string, Type> args = new Dictionary<string, Type>();
+            args.Add("modelName", typeof(string));
+            args.Add("licensePlateNumber", typeof(string));
+            args.Add("maxFuel", typeof(float));
+            args.Add("currentFuel", typeof(float));
+            args.Add("fuelType", typeof(EFuelTypes));
+            args.Add("color", typeof(EColors));
+            args.Add("numberOfDoors", typeof(int));
+            Dictionary<string, Type> wheelsDict = Wheel.GetArgumentsDictionary();
+            foreach(KeyValuePair<string, Type> pair in wheelsDict)
+            {
+                args.Add(pair.Key, pair.Value);
+            }
             return args;
         }
 
@@ -56,6 +68,18 @@ namespace Ex03.GarageLogic
             {
                 currentEnergy += fuelAmount;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+            str.Append(base.ToString());
+            str.Append($"\nMax Fuel: {maxEnergy}\nCurrent Fuel: {currentEnergy}\n" +
+                $"Fuel Type: {fuelType.ToString()}\nColor: {color.ToString()}\n" +
+                $"Number of doors: {numberOfDoors}\n");
+            str.Append("Wheel info:\n");
+            str.Append(wheels[0].ToString());
+            return str.ToString();
         }
     }
 }

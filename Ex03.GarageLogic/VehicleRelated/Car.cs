@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
 
 
 
-/*    interface IElectric
+*//*    interface IElectric
     {
         public void Charge(float hours);
     }
@@ -29,7 +29,7 @@ namespace Ex03.GarageLogic
     class ElectricCar : IElectric
     {
 
-    }*/
+    }*//*
     class Car : Vehicle
     {
         private const int _numberOfWheels = 5;
@@ -66,3 +66,4 @@ namespace Ex03.GarageLogic
 
     }
 }
+*/

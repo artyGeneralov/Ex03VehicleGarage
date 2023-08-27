@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Collections.Generic;
+using System;
 
 namespace Ex03.GarageLogic
 {
@@ -43,13 +44,18 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"manufacturer = {manufacturer}, current air pressure = {currentAirPressure}, max air pressure = {maxAirPressure}");
+            sb.Append($"Manufacturer: {manufacturer}\nCurrent air pressure: {currentAirPressure}\nMax air pressure: {maxAirPressure}");
             return sb.ToString();
         }
 
-        public static List<string> GetArgumentList() {
-
-            return new List<string>() { "manufacturer", "currentAirPressure", "maxAirPressure" };
+        public static Dictionary<string, Type> GetArgumentsDictionary() 
+        {
+            //string manufacturer, float currentAirPressure, float maxAirPressure
+            Dictionary<string, Type> args = new Dictionary<string, Type>();
+            args.Add("manufacturer", typeof(string));
+            args.Add("currentAirPressure", typeof(float));
+            args.Add("maxAirPressure", typeof(float));
+            return args;
         }
     }
 }

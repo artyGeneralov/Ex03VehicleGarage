@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Ex03.GarageLogic
 {
@@ -8,10 +9,9 @@ namespace Ex03.GarageLogic
         protected abstract int numberOfWheels { get; }
         private string modelName;
         private string licensePlateNumber;
-        private EnergySource energySource; // not this
         protected float maxEnergy, currentEnergy;
 
-        private List<Wheel> wheels;
+        protected List<Wheel> wheels;
 
         protected Vehicle()
         {
@@ -43,7 +43,6 @@ namespace Ex03.GarageLogic
         public Vehicle DeepCopy()
         {
             Vehicle copiedVehicle = (Vehicle)this.MemberwiseClone();
-            copiedVehicle.energySource = this.energySource.ShallowCopy();
             copiedVehicle.wheels = this.wheels.Select(w => w.ShallowCopy()).ToList();
             return copiedVehicle;
         }
@@ -53,17 +52,14 @@ namespace Ex03.GarageLogic
             return licensePlateNumber;
         }
 
-        public EnergySource GetEnergySource()
-        {
-            return energySource;
-        }
+
         public override string ToString()
         {
             return $"Model name: {modelName}\nLicense plate number: {licensePlateNumber}";
         }
 
 
-        public abstract List<string> GetArgumentsList();
+        public abstract Dictionary<string, Type> GetArgumentsDictionary();
 
 
 
